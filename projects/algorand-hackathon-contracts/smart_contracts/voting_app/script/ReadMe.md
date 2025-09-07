@@ -71,8 +71,6 @@ Used by the **admin (deployer)** to create new proposals.
 ```bash
 python smart_contracts/voting_app/script/create_proposal.py
 ```
-![alt text](image.png)
-
 
 ---
 
@@ -90,8 +88,6 @@ Allows a **member or the deployer** to cast their vote.
 ```bash
 python smart_contracts/voting_app/script/cast_vote.py
 ```
-![alt text](image-1.png)
-
 
 ---
 
@@ -109,8 +105,6 @@ Retrieves and displays the details of a proposal.
 ```bash
 python smart_contracts/voting_app/script/view_status.py
 ```
-![alt text](image-2.png)
-
 
 ---
 
@@ -129,8 +123,6 @@ Finalizes the result of a proposal.
 ```bash
 python smart_contracts/voting_app/script/finalize_proposal.py
 ```
-![alt text](image-3.png)
-
 
 ---
 
@@ -148,15 +140,12 @@ Combines **finalization and acceptance** in one flow.
 ```bash
 python smart_contracts/voting_app/script/finalize_and_accept.py
 ```
-![alt text](image-4.png)
-
 
 ### `new_account.py`
-Is for adding a new account under the MEMBER Wallet for testing existing member or not.
-Use this account for accepting to be the member or not as the current set check member in the MEMBER wallet only.
-![alt text](image-5.png)
-### `check_member.py` and `remove_member.py` is for checking and removing an account from being a valid member (0-Not | 1-Yes)
-![alt text](image-6.png)
+Is for adding a new account under the MEMBER Wallet for testing existing member or not
+
+### `check_member.py` and `remove_member.py` is for checking and removing an account from being a valid member
+
 
 **The flow of running the scripts:**
 

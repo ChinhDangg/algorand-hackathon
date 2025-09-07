@@ -1,0 +1,920 @@
+#pragma version 10
+#pragma typetrack false
+
+// smart_contracts.voting_app.contract.VotingApp.__algopy_entrypoint_with_init() -> uint64:
+main:
+    intcblock 1 0 2
+    bytecblock "member_count" "admin" "member" "stat" "yes" "no" 0x151f7c75 "next_pid" "end" "votedn" "prop" "reqn" "rcpt"
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txn NumAppArgs
+    bz main_after_if_else@14
+    pushbytess 0x854a518d 0xccd90f13 0x98d63a1e 0xffa3dd55 0xd401919d 0x0be1f3d2 0xa278a8b6 0x4e919b15 0x09a33fff // method "create(account)void", method "add_member(account)void", method "remove_member(account)void", method "is_member(account)uint64", method "create_proposal(string,uint64)uint64", method "get_proposal_details(uint64)(string,uint64,uint64,uint64)", method "vote(uint64,uint64)void", method "finalize(uint64)void", method "record_accept(uint64,account)void"
+    txna ApplicationArgs 0
+    match main_create_route@5 main_add_member_route@6 main_remove_member_route@7 main_is_member_route@8 main_create_proposal_route@9 main_get_proposal_details_route@10 main_vote_route@11 main_finalize_route@12 main_record_accept_route@13
+
+main_after_if_else@14:
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    intc_1 // 0
+    return
+
+main_record_accept_route@13:
+    // smart_contracts/voting_app/contract.py:145
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    txnas Accounts
+    // smart_contracts/voting_app/contract.py:145
+    // @abimethod()
+    callsub record_accept
+    intc_0 // 1
+    return
+
+main_finalize_route@12:
+    // smart_contracts/voting_app/contract.py:129
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/voting_app/contract.py:129
+    // @abimethod()
+    callsub finalize
+    intc_0 // 1
+    return
+
+main_vote_route@11:
+    // smart_contracts/voting_app/contract.py:101
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    // smart_contracts/voting_app/contract.py:101
+    // @abimethod()
+    callsub vote
+    intc_0 // 1
+    return
+
+main_get_proposal_details_route@10:
+    // smart_contracts/voting_app/contract.py:88
+    // @abimethod(readonly=True)
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/voting_app/contract.py:88
+    // @abimethod(readonly=True)
+    callsub get_proposal_details
+    uncover 2
+    itob
+    uncover 2
+    itob
+    uncover 2
+    itob
+    pushbytes 0x001a
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    swap
+    concat
+    bytec 6 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_create_proposal_route@9:
+    // smart_contracts/voting_app/contract.py:72
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    txna ApplicationArgs 2
+    btoi
+    // smart_contracts/voting_app/contract.py:72
+    // @abimethod()
+    callsub create_proposal
+    itob
+    bytec 6 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_is_member_route@8:
+    // smart_contracts/voting_app/contract.py:67
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txnas Accounts
+    // smart_contracts/voting_app/contract.py:67
+    // @abimethod()
+    callsub is_member
+    bytec 6 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_0 // 1
+    return
+
+main_remove_member_route@7:
+    // smart_contracts/voting_app/contract.py:57
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txnas Accounts
+    // smart_contracts/voting_app/contract.py:57
+    // @abimethod()
+    callsub remove_member
+    intc_0 // 1
+    return
+
+main_add_member_route@6:
+    // smart_contracts/voting_app/contract.py:49
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txnas Accounts
+    // smart_contracts/voting_app/contract.py:49
+    // @abimethod()
+    callsub add_member
+    intc_0 // 1
+    return
+
+main_create_route@5:
+    // smart_contracts/voting_app/contract.py:43
+    // @abimethod(create="require")
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    // smart_contracts/voting_app/contract.py:6
+    // class VotingApp(ARC4Contract):
+    txna ApplicationArgs 1
+    btoi
+    txnas Accounts
+    // smart_contracts/voting_app/contract.py:43
+    // @abimethod(create="require")
+    callsub create
+    intc_0 // 1
+    return
+
+
+// smart_contracts.voting_app.contract.VotingApp.create(admin: bytes) -> void:
+create:
+    // smart_contracts/voting_app/contract.py:43-44
+    // @abimethod(create="require")
+    // def create(self, admin: Account) -> None:
+    proto 1 0
+    // smart_contracts/voting_app/contract.py:45
+    // self.admin.value = admin
+    bytec_1 // "admin"
+    frame_dig -1
+    app_global_put
+    // smart_contracts/voting_app/contract.py:46
+    // self.next_pid.value = UInt64(1)
+    bytec 7 // "next_pid"
+    intc_0 // 1
+    app_global_put
+    // smart_contracts/voting_app/contract.py:47
+    // self.member_count.value = UInt64(0)
+    bytec_0 // "member_count"
+    intc_1 // 0
+    app_global_put
+    retsub
+
+
+// smart_contracts.voting_app.contract.VotingApp.add_member(acct: bytes) -> void:
+add_member:
+    // smart_contracts/voting_app/contract.py:49-50
+    // @abimethod()
+    // def add_member(self, acct: Account) -> None:
+    proto 1 0
+    // smart_contracts/voting_app/contract.py:51
+    // assert Txn.sender == self.admin.value, "Only admin can add"
+    txn Sender
+    intc_1 // 0
+    bytec_1 // "admin"
+    app_global_get_ex
+    assert // check self.admin exists
+    ==
+    assert // Only admin can add
+    // smart_contracts/voting_app/contract.py:52
+    // prev, has = self.members.maybe(acct)
+    bytec_2 // "member"
+    frame_dig -1
+    concat
+    dup
+    box_get
+    swap
+    btoi
+    swap
+    // smart_contracts/voting_app/contract.py:53
+    // if not has or prev == UInt64(0):
+    bz add_member_if_body@2
+    frame_dig 1
+    bnz add_member_after_if_else@3
+
+add_member_if_body@2:
+    // smart_contracts/voting_app/contract.py:54
+    // self.members[acct] = UInt64(1)
+    intc_0 // 1
+    itob
+    frame_dig 0
+    swap
+    box_put
+    // smart_contracts/voting_app/contract.py:55
+    // self.member_count.value = self.member_count.value + UInt64(1)
+    intc_1 // 0
+    bytec_0 // "member_count"
+    app_global_get_ex
+    assert // check self.member_count exists
+    intc_0 // 1
+    +
+    bytec_0 // "member_count"
+    swap
+    app_global_put
+
+add_member_after_if_else@3:
+    retsub
+
+
+// smart_contracts.voting_app.contract.VotingApp.remove_member(acct: bytes) -> void:
+remove_member:
+    // smart_contracts/voting_app/contract.py:57-58
+    // @abimethod()
+    // def remove_member(self, acct: Account) -> None:
+    proto 1 0
+    // smart_contracts/voting_app/contract.py:59
+    // assert Txn.sender == self.admin.value, "Only admin can remove"
+    txn Sender
+    intc_1 // 0
+    bytec_1 // "admin"
+    app_global_get_ex
+    assert // check self.admin exists
+    ==
+    assert // Only admin can remove
+    // smart_contracts/voting_app/contract.py:60
+    // prev, has = self.members.maybe(acct)
+    bytec_2 // "member"
+    frame_dig -1
+    concat
+    dup
+    box_get
+    swap
+    btoi
+    swap
+    // smart_contracts/voting_app/contract.py:61
+    // if has and prev == UInt64(1):
+    bz remove_member_after_if_else@5
+    frame_dig 1
+    intc_0 // 1
+    ==
+    bz remove_member_after_if_else@5
+    // smart_contracts/voting_app/contract.py:62
+    // self.members[acct] = UInt64(0)
+    intc_1 // 0
+    itob
+    frame_dig 0
+    swap
+    box_put
+    // smart_contracts/voting_app/contract.py:63-64
+    // # avoid underflow if someone calls twice
+    // if self.member_count.value > UInt64(0):
+    intc_1 // 0
+    bytec_0 // "member_count"
+    app_global_get_ex
+    assert // check self.member_count exists
+    bz remove_member_after_if_else@5
+    // smart_contracts/voting_app/contract.py:65
+    // self.member_count.value = self.member_count.value - UInt64(1)
+    intc_1 // 0
+    bytec_0 // "member_count"
+    app_global_get_ex
+    assert // check self.member_count exists
+    intc_0 // 1
+    -
+    bytec_0 // "member_count"
+    swap
+    app_global_put
+
+remove_member_after_if_else@5:
+    retsub
+
+
+// smart_contracts.voting_app.contract.VotingApp.is_member(acct: bytes) -> bytes:
+is_member:
+    // smart_contracts/voting_app/contract.py:67-68
+    // @abimethod()
+    // def is_member(self, acct: Account) -> AUInt64:
+    proto 1 1
+    // smart_contracts/voting_app/contract.py:69
+    // v, has = self.members.maybe(acct)
+    bytec_2 // "member"
+    frame_dig -1
+    concat
+    box_get
+    swap
+    btoi
+    // smart_contracts/voting_app/contract.py:70
+    // return AUInt64(v if has else UInt64(0))
+    intc_1 // 0
+    swap
+    uncover 2
+    select
+    itob
+    retsub
+
+
+// smart_contracts.voting_app.contract.VotingApp.create_proposal(description: bytes, end_round: uint64) -> uint64:
+create_proposal:
+    // smart_contracts/voting_app/contract.py:72-73
+    // @abimethod()
+    // def create_proposal(self, description: String, end_round: UInt64) -> UInt64:
+    proto 2 1
+    // smart_contracts/voting_app/contract.py:74-75
+    // # Only admin creates; snapshot required_n from current active members
+    // assert Txn.sender == self.admin.value, "Only admin"
+    txn Sender
+    intc_1 // 0
+    bytec_1 // "admin"
+    app_global_get_ex
+    assert // check self.admin exists
+    ==
+    assert // Only admin
+    // smart_contracts/voting_app/contract.py:76
+    // pid = self.next_pid.value
+    intc_1 // 0
+    bytec 7 // "next_pid"
+    app_global_get_ex
+    assert // check self.next_pid exists
+    // smart_contracts/voting_app/contract.py:77
+    // self.next_pid.value = self.next_pid.value + UInt64(1)
+    dup
+    intc_0 // 1
+    +
+    bytec 7 // "next_pid"
+    swap
+    app_global_put
+    // smart_contracts/voting_app/contract.py:79
+    // self.proposals[pid] = description
+    dup
+    itob
+    bytec 10 // "prop"
+    dig 1
+    concat
+    dup
+    box_del
+    pop
+    frame_dig -2
+    box_put
+    // smart_contracts/voting_app/contract.py:80
+    // self.yes_votes[pid] = UInt64(0)
+    bytec 4 // "yes"
+    dig 1
+    concat
+    intc_1 // 0
+    itob
+    swap
+    dig 1
+    box_put
+    // smart_contracts/voting_app/contract.py:81
+    // self.no_votes[pid] = UInt64(0)
+    bytec 5 // "no"
+    dig 2
+    concat
+    dig 1
+    box_put
+    // smart_contracts/voting_app/contract.py:82
+    // self.status[pid] = UInt64(1)  # Active
+    bytec_3 // "stat"
+    dig 2
+    concat
+    intc_0 // 1
+    itob
+    box_put
+    // smart_contracts/voting_app/contract.py:83
+    // self.end_round[pid] = end_round
+    bytec 8 // "end"
+    dig 2
+    concat
+    frame_dig -1
+    itob
+    box_put
+    // smart_contracts/voting_app/contract.py:84
+    // self.required_n[pid] = self.member_count.value  # <-- SNAPSHOT here
+    intc_1 // 0
+    bytec_0 // "member_count"
+    app_global_get_ex
+    assert // check self.member_count exists
+    bytec 11 // "reqn"
+    dig 3
+    concat
+    swap
+    itob
+    box_put
+    // smart_contracts/voting_app/contract.py:85
+    // self.voted_n[pid] = UInt64(0)
+    bytec 9 // "votedn"
+    uncover 2
+    concat
+    swap
+    box_put
+    // smart_contracts/voting_app/contract.py:86
+    // return pid
+    retsub
+
+
+// smart_contracts.voting_app.contract.VotingApp.get_proposal_details(pid: uint64) -> bytes, uint64, uint64, uint64:
+get_proposal_details:
+    // smart_contracts/voting_app/contract.py:88-91
+    // @abimethod(readonly=True)
+    // def get_proposal_details(
+    //     self, pid: UInt64
+    // ) -> tuple[String, UInt64, UInt64, UInt64]:
+    proto 1 4
+    // smart_contracts/voting_app/contract.py:92
+    // desc, has_desc = self.proposals.maybe(pid)
+    frame_dig -1
+    itob
+    bytec 10 // "prop"
+    dig 1
+    concat
+    box_get
+    // smart_contracts/voting_app/contract.py:93
+    // assert has_desc, "Proposal not found"
+    assert // Proposal not found
+    // smart_contracts/voting_app/contract.py:95
+    // yes = self.yes_votes.get(pid, default=UInt64(0))
+    bytec 4 // "yes"
+    dig 2
+    concat
+    box_get
+    swap
+    btoi
+    intc_1 // 0
+    swap
+    uncover 2
+    select
+    // smart_contracts/voting_app/contract.py:96
+    // no = self.no_votes.get(pid, default=UInt64(0))
+    bytec 5 // "no"
+    dig 3
+    concat
+    box_get
+    swap
+    btoi
+    intc_1 // 0
+    swap
+    uncover 2
+    select
+    // smart_contracts/voting_app/contract.py:97
+    // st = self.status.get(pid, default=UInt64(0))  # or assert existence via maybe()
+    bytec_3 // "stat"
+    uncover 4
+    concat
+    box_get
+    swap
+    btoi
+    intc_1 // 0
+    swap
+    uncover 2
+    select
+    // smart_contracts/voting_app/contract.py:99
+    // return (desc, yes, no, st)
+    retsub
+
+
+// smart_contracts.voting_app.contract.VotingApp.vote(pid: uint64, choice: uint64) -> void:
+vote:
+    // smart_contracts/voting_app/contract.py:101-102
+    // @abimethod()
+    // def vote(self, pid: UInt64, choice: UInt64) -> None:
+    proto 2 0
+    intc_1 // 0
+    pushbytes ""
+    // smart_contracts/voting_app/contract.py:103-104
+    // # Must be an active member at time of vote
+    // mflag, mok = self.members.maybe(Txn.sender)
+    bytec_2 // "member"
+    txn Sender
+    concat
+    box_get
+    swap
+    btoi
+    swap
+    // smart_contracts/voting_app/contract.py:105
+    // assert mok and mflag == UInt64(1), "Not a member"
+    bz vote_bool_false@3
+    frame_dig 2
+    intc_0 // 1
+    ==
+    bz vote_bool_false@3
+    intc_0 // 1
+
+vote_bool_merge@4:
+    // smart_contracts/voting_app/contract.py:105
+    // assert mok and mflag == UInt64(1), "Not a member"
+    assert // Not a member
+    // smart_contracts/voting_app/contract.py:107-108
+    // # Must be active proposal and within deadline
+    // st, ok = self.status.maybe(pid)
+    frame_dig -2
+    itob
+    dup
+    frame_bury 0
+    bytec_3 // "stat"
+    swap
+    concat
+    box_get
+    swap
+    btoi
+    frame_bury 1
+    // smart_contracts/voting_app/contract.py:109
+    // assert ok and st == UInt64(1), "Not active"
+    bz vote_bool_false@7
+    frame_dig 1
+    intc_0 // 1
+    ==
+    bz vote_bool_false@7
+    intc_0 // 1
+
+vote_bool_merge@8:
+    // smart_contracts/voting_app/contract.py:109
+    // assert ok and st == UInt64(1), "Not active"
+    assert // Not active
+    // smart_contracts/voting_app/contract.py:111-112
+    // # Optional: enforce voting only before or at end round
+    // end = self.end_round[pid]
+    bytec 8 // "end"
+    frame_dig 0
+    dup
+    cover 2
+    concat
+    box_get
+    assert // check self.end_round entry exists
+    btoi
+    // smart_contracts/voting_app/contract.py:113
+    // assert Global.round <= end, "Voting window closed"
+    global Round
+    >=
+    assert // Voting window closed
+    // smart_contracts/voting_app/contract.py:115-116
+    // # Enforce one vote per account per proposal
+    // rcpt, has_rcpt = self.vote_receipt.maybe((pid, Txn.sender))
+    dup
+    txn Sender
+    concat
+    bytec 12 // "rcpt"
+    swap
+    concat
+    box_get
+    bury 1
+    // smart_contracts/voting_app/contract.py:117
+    // assert not has_rcpt, "Already voted"
+    !
+    assert // Already voted
+    // smart_contracts/voting_app/contract.py:118
+    // self.vote_receipt[(pid, Txn.sender)] = UInt64(1)
+    dup
+    txn Sender
+    concat
+    bytec 12 // "rcpt"
+    swap
+    concat
+    intc_0 // 1
+    itob
+    box_put
+    // smart_contracts/voting_app/contract.py:120-121
+    // # Count this voter towards voted_n
+    // self.voted_n[pid] = self.voted_n[pid] + UInt64(1)
+    bytec 9 // "votedn"
+    swap
+    concat
+    dup
+    box_get
+    assert // check self.voted_n entry exists
+    btoi
+    intc_0 // 1
+    +
+    itob
+    box_put
+    // smart_contracts/voting_app/contract.py:123-124
+    // # Tally
+    // if choice == UInt64(1):
+    frame_dig -1
+    intc_0 // 1
+    ==
+    bz vote_else_body@10
+    // smart_contracts/voting_app/contract.py:125
+    // self.yes_votes[pid] = self.yes_votes[pid] + UInt64(1)
+    bytec 4 // "yes"
+    frame_dig 0
+    concat
+    dup
+    box_get
+    assert // check self.yes_votes entry exists
+    btoi
+    intc_0 // 1
+    +
+    itob
+    box_put
+    retsub
+
+vote_else_body@10:
+    // smart_contracts/voting_app/contract.py:127
+    // self.no_votes[pid] = self.no_votes[pid] + UInt64(1)
+    bytec 5 // "no"
+    frame_dig 0
+    concat
+    dup
+    box_get
+    assert // check self.no_votes entry exists
+    btoi
+    intc_0 // 1
+    +
+    itob
+    box_put
+    retsub
+
+vote_bool_false@7:
+    intc_1 // 0
+    b vote_bool_merge@8
+
+vote_bool_false@3:
+    intc_1 // 0
+    b vote_bool_merge@4
+
+
+// smart_contracts.voting_app.contract.VotingApp.finalize(pid: uint64) -> void:
+finalize:
+    // smart_contracts/voting_app/contract.py:129-130
+    // @abimethod()
+    // def finalize(self, pid: UInt64) -> None:
+    proto 1 0
+    pushbytes ""
+    // smart_contracts/voting_app/contract.py:131
+    // st, ok = self.status.maybe(pid)
+    frame_dig -1
+    itob
+    dup
+    bytec_3 // "stat"
+    swap
+    concat
+    dup
+    box_get
+    swap
+    btoi
+    swap
+    // smart_contracts/voting_app/contract.py:132
+    // assert ok and st == UInt64(1), "Not active"
+    bz finalize_bool_false@3
+    frame_dig 3
+    intc_0 // 1
+    ==
+    bz finalize_bool_false@3
+    intc_0 // 1
+
+finalize_bool_merge@4:
+    // smart_contracts/voting_app/contract.py:132
+    // assert ok and st == UInt64(1), "Not active"
+    assert // Not active
+    // smart_contracts/voting_app/contract.py:134
+    // rn = self.required_n[pid]  # how many must vote
+    bytec 11 // "reqn"
+    frame_dig 1
+    dup
+    cover 2
+    concat
+    box_get
+    assert // check self.required_n entry exists
+    btoi
+    // smart_contracts/voting_app/contract.py:135
+    // vn = self.voted_n[pid]  # how many already voted
+    bytec 9 // "votedn"
+    dig 2
+    concat
+    box_get
+    assert // check self.voted_n entry exists
+    btoi
+    // smart_contracts/voting_app/contract.py:136
+    // end = self.end_round[pid]  # deadline
+    bytec 8 // "end"
+    uncover 3
+    concat
+    box_get
+    assert // check self.end_round entry exists
+    btoi
+    frame_bury 0
+    // smart_contracts/voting_app/contract.py:138-139
+    // # Allow finalize if everyone voted OR deadline reached
+    // assert (vn == rn) or (Global.round >= end), "Too early"
+    ==
+    bnz finalize_bool_true@6
+    global Round
+    frame_dig 0
+    >=
+    bz finalize_bool_false@7
+
+finalize_bool_true@6:
+    intc_0 // 1
+
+finalize_bool_merge@8:
+    // smart_contracts/voting_app/contract.py:138-139
+    // # Allow finalize if everyone voted OR deadline reached
+    // assert (vn == rn) or (Global.round >= end), "Too early"
+    assert // Too early
+    // smart_contracts/voting_app/contract.py:141
+    // yes = self.yes_votes[pid]
+    bytec 4 // "yes"
+    frame_dig 1
+    dup
+    cover 2
+    concat
+    box_get
+    assert // check self.yes_votes entry exists
+    btoi
+    // smart_contracts/voting_app/contract.py:142
+    // no = self.no_votes[pid]
+    bytec 5 // "no"
+    uncover 2
+    concat
+    box_get
+    assert // check self.no_votes entry exists
+    btoi
+    // smart_contracts/voting_app/contract.py:143
+    // self.status[pid] = UInt64(2) if yes > no else UInt64(3)
+    >
+    pushint 3 // 3
+    intc_2 // 2
+    uncover 2
+    select
+    itob
+    frame_dig 2
+    swap
+    box_put
+    retsub
+
+finalize_bool_false@7:
+    intc_1 // 0
+    b finalize_bool_merge@8
+
+finalize_bool_false@3:
+    intc_1 // 0
+    b finalize_bool_merge@4
+
+
+// smart_contracts.voting_app.contract.VotingApp.record_accept(pid: uint64, candidate: bytes) -> void:
+record_accept:
+    // smart_contracts/voting_app/contract.py:145-146
+    // @abimethod()
+    // def record_accept(self, pid: UInt64, candidate: Account) -> None:
+    proto 2 0
+    intc_1 // 0
+    pushbytes ""
+    // smart_contracts/voting_app/contract.py:147
+    // assert Txn.sender == self.admin.value, "Only admin can record"
+    txn Sender
+    intc_1 // 0
+    bytec_1 // "admin"
+    app_global_get_ex
+    assert // check self.admin exists
+    ==
+    assert // Only admin can record
+    // smart_contracts/voting_app/contract.py:148
+    // st, ok = self.status.maybe(pid)
+    frame_dig -2
+    itob
+    dup
+    bytec_3 // "stat"
+    swap
+    concat
+    box_get
+    swap
+    btoi
+    swap
+    // smart_contracts/voting_app/contract.py:149
+    // assert ok and st == UInt64(2), "Proposal not passed"
+    bz record_accept_bool_false@3
+    frame_dig 3
+    intc_2 // 2
+    ==
+    bz record_accept_bool_false@3
+    intc_0 // 1
+
+record_accept_bool_merge@4:
+    // smart_contracts/voting_app/contract.py:149
+    // assert ok and st == UInt64(2), "Proposal not passed"
+    assert // Proposal not passed
+    // smart_contracts/voting_app/contract.py:150
+    // self.accepted[pid] = candidate
+    pushbytes "acc"
+    frame_dig 2
+    concat
+    frame_dig -1
+    box_put
+    // smart_contracts/voting_app/contract.py:151-152
+    // # Optionally auto-add accepted candidate as member:
+    // prev, has = self.members.maybe(candidate)
+    bytec_2 // "member"
+    frame_dig -1
+    concat
+    dup
+    frame_bury 0
+    box_get
+    swap
+    btoi
+    frame_bury 1
+    // smart_contracts/voting_app/contract.py:153
+    // if not has or prev == UInt64(0):
+    bz record_accept_if_body@6
+    frame_dig 1
+    bnz record_accept_after_if_else@7
+
+record_accept_if_body@6:
+    // smart_contracts/voting_app/contract.py:154
+    // self.members[candidate] = UInt64(1)
+    intc_0 // 1
+    itob
+    frame_dig 0
+    swap
+    box_put
+    // smart_contracts/voting_app/contract.py:155
+    // self.member_count.value = self.member_count.value + UInt64(1)
+    intc_1 // 0
+    bytec_0 // "member_count"
+    app_global_get_ex
+    assert // check self.member_count exists
+    intc_0 // 1
+    +
+    bytec_0 // "member_count"
+    swap
+    app_global_put
+
+record_accept_after_if_else@7:
+    retsub
+
+record_accept_bool_false@3:
+    intc_1 // 0
+    b record_accept_bool_merge@4
