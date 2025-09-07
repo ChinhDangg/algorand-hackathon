@@ -1,0 +1,11 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2.1.6
+_src_path: gh:algorandfoundation/algokit-fullstack-template
+author_email: 61719308+ChinhDangg@users.noreply.github.com
+author_name: Chinh Dang
+cloud_provider: none
+contract_name: voting_app
+deployment_language: python
+preset_name: production
+project_name: algorand-hackathon
+

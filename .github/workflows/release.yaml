@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  algorand-hackathon-contracts-validate:
+    name: Run algorand-hackathon-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/algorand-hackathon-contracts-ci.yaml
+
+  algorand-hackathon-contracts-release:
+    name: Run algorand-hackathon-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/algorand-hackathon-contracts-cd.yaml
+    needs: algorand-hackathon-contracts-validate
+
+  algorand-hackathon-frontend-validate:
+    name: Run algorand-hackathon-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/algorand-hackathon-frontend-ci.yaml
+
+  algorand-hackathon-frontend-release:
+    name: Run algorand-hackathon-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/algorand-hackathon-frontend-cd.yaml
+    needs: algorand-hackathon-frontend-validate
