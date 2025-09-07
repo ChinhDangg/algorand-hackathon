@@ -151,12 +151,34 @@ python smart_contracts/voting_app/script/finalize_and_accept.py
 ![alt text](image-4.png)
 
 
+---
+
 ### `new_account.py`
 Is for adding a new account under the MEMBER Wallet for testing existing member or not.
 Use this account for accepting to be the member or not as the current set check member in the MEMBER wallet only.
+
+**Usage:**
+
+```bash
+python smart_contracts/voting_app/script/new_account.py
+```
 ![alt text](image-5.png)
-### `check_member.py` and `remove_member.py` is for checking and removing an account from being a valid member (0-Not | 1-Yes)
+
+
+---
+
+### `check_member.py` and `remove_member.py` 
+
+Checking and removing an account from being a valid member (0-Not | 1-Yes)
+
+```bash
+python smart_contracts/voting_app/script/check_member.py
+python smart_contracts/voting_app/script/remove_member.py
+```
 ![alt text](image-6.png)
+
+
+---
 
 **The flow of running the scripts:**
 
