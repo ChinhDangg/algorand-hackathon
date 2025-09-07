@@ -185,3 +185,7 @@ python smart_contracts/voting_app/script/remove_member.py
 create_proposal.py → cast_vote.py (DEPLOYER + MEMBER) → view_status.py → finalize_proposal.py
                                                                         ↘
                                                                         finalize_and_accept.py (combined shortcut)
+
+---
+### Future Content  ###
+In the future, the frontend or a GUI could be added on top of the implemented functionality to make a better presentation and more intuitive for the users.
