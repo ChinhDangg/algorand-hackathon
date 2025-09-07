@@ -116,7 +116,7 @@ python smart_contracts/voting_app/script/view_status.py
 
 ### `finalize_proposal.py`
 
-Finalizes the result of a proposal.
+Finalizes the result of a proposal (for general voting).
 
 - Prompts for `app_id` and `pid`.
 - Calls `finalize(pid)`.
