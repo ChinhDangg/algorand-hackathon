@@ -160,6 +160,6 @@ Use this account for accepting to be the member or not as the current set check 
 
 **The flow of running the scripts:**
 
-create_proposal.py → cast_vote.py (DEPLOYER + MEMBER) → view_status.py → finalize_proposal.py → accept_candidate.py
-                                                                                              ↘
-                                                                                              finalize_and_accept.py (combined shortcut)
+create_proposal.py → cast_vote.py (DEPLOYER + MEMBER) → view_status.py → finalize_proposal.py
+                                                                        ↘
+                                                                        finalize_and_accept.py (combined shortcut)
